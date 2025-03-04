@@ -46,3 +46,15 @@ disassemble deobfuscate
 ![Screenshot](https://i.imgur.com/YP4dVQW.png)
 
 Entity **Key** has the memory address "0x2020". 
+ 
+To confirm its location, we used:
+```sh
+info variables
+```
+![Screenshot](https://i.imgur.com/lMsIcVJ.png)
+
+From the output, we found these 3 entities along with their memory addresses:
+
+- **XOR Key:** `0x2020`
+- **Obfuscated Password:** `0x2040`
+- **Obfuscated Flag:** `0x2060`

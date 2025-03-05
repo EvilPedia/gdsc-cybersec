@@ -17,6 +17,7 @@ It can be installed by -
 ```
 sudo apt install gdb
 ```
+- [**Cyberchef**](https://gchq.github.io/CyberChef/) - An Online AIO Data Analysis Tool
 ---
 ### **Step 1: Extracting Strings**
 
@@ -41,20 +42,12 @@ gdb release
 ```
 ![Screenshot](https://i.imgur.com/cXs1zON.png)
 
-Earlier I found out that the program has a function named **deobfuscate**, which deciphers the stored password and flag. To find it's memory address, we can use this command :
-
-```sh
-disassemble deobfuscate
-```
-![Screenshot](https://i.imgur.com/YP4dVQW.png)
-
-Entity **Key** has the memory address "0x2020". 
- 
-To confirm its location, we used:
+Earlier we found out that there are 3 variables related to the obfuscation of the flag/password, to find more info about that we run the command :
 ```sh
 info variables
 ```
 ![Screenshot](https://i.imgur.com/lMsIcVJ.png)
+
 From the output, we found these 3 entities along with their memory addresses:
 
 - **XOR Key:** `0x2020`
@@ -90,5 +83,44 @@ As said in the problem that a basic-obfuscation method was used to encrypt this 
 
 ### **Step 5: Decrypting the flag/password using the XOR Key:**
 
+We can now use [Cyberchef](https://gchq.github.io/CyberChef/) to decrypt the file using the XOR operation.
 
-Using the simple below script we can decrypt the flag/password : 
+#### To decrypt the  password :
+- Step 1: Paste the hex data of `<obfuscated_password>` in the input field.
+- Step 2 : Drag and drop the `From Hex` function from the Operations Tab.
+- Step 3 : Drag and drop the `XOR` function from the Operation Tab.
+- Step 4 : Paste the hex data of the `<KEY>` in the Key field under the `XOR` function.
+
+![Screenshot](https://i.imgur.com/f2G5iui.png)
+
+If we look at the output, we find that Cyberchef has decoded the password and has found it to be `bt8uA1uxF350yZLuto9GmqTWJBpP2jUq` .
+
+I repeated the same steps to find the decrypted data for `<obfuscated_flag>` :
+
+![Screenshot](https://i.imgur.com/fOs6TTa.png)
+
+To double check, if the flag decrypted was right or not, we can enter the password when prompted :
+![Screenshot](https://i.imgur.com/5D5Eqqu.png)
+
+**Found Password:**
+
+```
+bt8uA1uxF350yZLuto9GmqTWJBpP2jUq
+```
+ **Found Flag:**
+
+```
+gdsc{unp4ck1n6_b1n4r135_15_n4u6h7y}
+```
+
+
+---
+# Conclusion
+
+- **GDB** helped us to find the functions, the memory of those functions, and the values stored inside the function in the form of hex-values.
+- **XOR encryption** is a common obfuscation method, easily reversible.
+- **Cyberchef** helped us to decrypt the `<obfuscated_password` and the `<obfuscated_flag>` functions by using the hex data from the  `<KEY>` function.
+
+#### Solving this CTF Challenge required binary analysis, reverse engineering and cryptographic skills.
+
+---

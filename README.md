@@ -3,7 +3,7 @@
 
 ## Task Description
 
-Our GDSC Tech Team accidentally left some sensitive data in their latest binary release! They attempted to protect it with basic obfuscation, but we need you to evaluate how secure it really is. Your challenge is to recover the hidden flag.
+Task 1: Our GDSC Tech Team accidentally left some sensitive data in their latest binary release! They attempted to protect it with basic obfuscation, but we need you to evaluate how secure it really is. Your challenge is to recover the hidden flag.
 
 - **Flag Format:** `gdsc{...}`
 - **Provided File:** [Binary Release](https://drive.usercontent.google.com/u/1/uc?id=1nhqXobBM16Srbr6iiiPXCx1HAvrH274w&export=download)
@@ -120,7 +120,7 @@ gdsc{unp4ck1n6_b1n4r135_15_n4u6h7y}
 
 - **GDB** helped us to find the functions, the memory of those functions, and the values stored inside the function in the form of hex-values.
 - **XOR encryption** is a common obfuscation method, easily reversible.
-- **Cyberchef** helped us to decrypt the `<obfuscated_password` and the `<obfuscated_flag>` functions by using the hex data from the  `<KEY>` function.
+- **Cyberchef** helped us to decrypt the `<obfuscated_password>` and the `<obfuscated_flag>` functions by using the hex data from the  `<KEY>` function.
 - This challenge could also be directly solved, by deobfuscating the flag using the XOR Key, bypassing the step which requires the password to be cracked.
   
 #### Solving this CTF Challenge required binary analysis, reverse engineering and cryptographic skills.
